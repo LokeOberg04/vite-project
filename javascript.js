@@ -2,18 +2,21 @@ import { myFunction } from './counter.js'
 import { doFunction } from './counter.js'
 import { searchItem } from './counter.js'
   import items from './itemslist.json'
+  window.myFunction = myFunction
+  window.doFunction = doFunction
+  window.searchItem = searchItem
   
   
 //let boots = items.data.filter(item => item.tags.indexOf('boots') > 0);
-let boots = [];
+let purchasableitems = [];
 for (const [key, value] of Object.entries(items.data)) {
     //console.log(`${key}: ${value.name}`);
     console.log(value)
-    if (value.name == "Heartsteel") {
-        boots.push(value);
+    if (value.gold.purchasable == 1) {
+        purchasableitems.push(value);
     }
 }
-console.log(boots)
+console.log(purchasableitems)
   
   let olditems = {
       mythics: {
@@ -30,13 +33,13 @@ console.log(boots)
   };
   let list = document.getElementById("myUL");
   let searchnum = 0;
-  for (const [key, value] of Object.entries(items.data)) {
-  
+  for (const [key, value] of Object.entries(purchasableitems)) {
+
       let li = document.createElement("li");
       let a = document.createElement("a");
       
       a.innerText = value.name;
-      a.setAttribute('onclick','searchItem("' + value.name + '",' + 0 + ');')
+      a.setAttribute('onclick','searchItem("' + value.name + '",' + 0 + ',' + searchnum + ');')
       list.appendChild(li);
       li.appendChild(a);
     }
@@ -47,8 +50,11 @@ console.log(boots)
   let guesses = 0;
   let guessnum = 0;
   let guess = "";
-  let itemnum = Math.round(Math.random() * 3);
-  let answer = items.mythics.name[itemnum];
+  let itemnum = Math.round(Math.random() * 192);
+  let answer = purchasableitems[itemnum];
   
   console.log(answer)
   
+  document.getElementById("answertags").innerText = answer.tags
+  document.getElementById("answergold").innerText = answer.gold.total
+  document.getElementById("answertext").innerText = answer.name

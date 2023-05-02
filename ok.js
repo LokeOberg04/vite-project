@@ -1,18 +1,29 @@
-export function setupCounter(element) {
-  let counter = 0
-  const setCounter = (count) => {
-    counter = count
-    element.innerHTML = `count is ${counter}`
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
   }
-  element.addEventListener('click', () => setCounter(counter + 1))
-  setCounter(0)
-}
 
-export function doFunction() {
-  if(document.getElementById("answertext").innerText == document.getElementsByTagName("input")[0].value) {
-    alert("you won")
+  function searchItem(name, num) {
+    searchnum = num;
+      document.getElementById("myInput").value = name;
   }
-  guessnum = searchnum
+
+  function doFunction() {
   guessnum = searchnum;
     console.log(guessnum)
     guess = document.getElementsByTagName("input")[0].value;
@@ -21,8 +32,6 @@ export function doFunction() {
     let hints = document.getElementById("hints");
     let hint = document.createElement("p");
 hints.append(hint);
-hint.innerText += answer
-/*
 if (items.mythics.ad[guessnum] == 1 && items.mythics.ad[itemnum]) {
     hint.innerText += " ad🟩";
 } else if (items.mythics.ad[guessnum] == 1) {
@@ -53,37 +62,10 @@ if (items.mythics.ap[guessnum] == 1 && items.mythics.ap[itemnum]) {
         } else if (items.mythics.mr[guessnum] == 1) {
         hint.innerText += " mr🟥";
         }
-        */
       
     console.log("Your guess: " + guess);
     console.log("guesses = " + guesses)
-    if (guess.toLowerCase() === answer.name.toLowerCase()) {
+    if (guess.toLowerCase() === answer.toLowerCase()) {
         alert("You won!\nThe item was: " + answer + "\nYou did it in " + guesses + " guesses.");
     }
-}
-
-export function searchItem(name, num, searchnum) {
-  searchnum = num;
-    document.getElementById("myInput").value = name;
-}
-
-
-export function myFunction() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName('li');
-
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
 }

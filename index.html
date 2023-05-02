@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    Answer: <span id="answertext" hidden></span>
+    <br>
+    Answer tags: <span id="answertags"></span>
+        <br>
+    Answer gold: <span id="answergold"></span>
     <header class="header">
         <h1>Guess the mythic!</h1>
         <p id="printGuesses"></p>
@@ -19,11 +24,11 @@
     <!--<input type="text" name="guess" id="guess"> -->
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        <input id="clickMe" type="button" value="submit" onclick="doFunction();" />
 
 <ul id="myUL">
 </ul>
 
-        <input id="clickMe" type="button" value="submit" onclick="doFunction();" />
     </header>
 <main>
     </main>
