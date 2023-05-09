@@ -1,18 +1,7 @@
-export function setupCounter(element) {
-  let counter = 0
-  const setCounter = (count) => {
-    counter = count
-    element.innerHTML = `count is ${counter}`
-  }
-  element.addEventListener('click', () => setCounter(counter + 1))
-  setCounter(0)
-}
-
 export function doFunction() {
   if(document.getElementById("answertext").innerText == document.getElementsByTagName("input")[0].value) {
     alert("you won")
   }
-  guessnum = searchnum
   guessnum = searchnum;
     console.log(guessnum)
     guess = document.getElementsByTagName("input")[0].value;
