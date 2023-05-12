@@ -5,6 +5,7 @@ function searchItem(name) {
 function doFunction() {
   document.getElementById("main").classList.remove('flex');
     guess = document.getElementsByTagName("input")[0].value;
+    searchItem("");
     let guesses = document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))
        if (document.getElementById("printGuesses").innerHTML == "") {
       document.getElementById("printGuesses").innerHTML = "You have made " + 1 + " guess.";
@@ -98,8 +99,10 @@ const setup = async () => {
   //  return purchasableitems;
   
   createList(purchasableitems)
-  document.getElementById("myInput").addEventListener('enter', (e) => {
+  document.getElementById("myInput").addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
 doFunction();
+    }
   });
   
   
