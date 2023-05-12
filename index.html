@@ -18,10 +18,19 @@
                                     <p id="name" hidden></p>
     <header class="header">
         <h1>Guess The Item!</h1>
-        <p id="printGuesses"></p>
+<main>
+  <section id="main">
+    <div class="alert alert-1-primary">
+      <h3 class="alert-title" id="wintitle"></h3>
+      <p class="alert-content" id="wintext"></p>
+    </div>
+    </section>
+    </main>
+         <p id="printGuesses"></p>
                 <p id="hints"></p>
         <label for="guess" name="guess">Guess</label>
     <!--<input type="text" name="guess" id="guess"> -->
+        
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         <input id="clickMe" type="button" value="submit" onclick="doFunction();" />
@@ -30,8 +39,6 @@
 </ul>
 
     </header>
-<main>
-    </main>
     <script src="javascript.js"></script>
     <!-- <script type="module" src="/main.js"></script> -->
 </body>

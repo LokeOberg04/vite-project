@@ -3,6 +3,7 @@ function searchItem(name) {
 }
 
 function doFunction() {
+  document.getElementById("main").classList.remove('flex');
     guess = document.getElementsByTagName("input")[0].value;
     let guesses = document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))
        if (document.getElementById("printGuesses").innerHTML == "") {
@@ -28,7 +29,17 @@ hint.innerText += document.getElementById("cost").innerHTML;
     console.log("Your guess: " + guess);
     console.log("guesses = " + guesses)
     if (guess.toLowerCase() === (document.getElementById("name").innerHTML).toLowerCase()) {
-        alert("You won!\nThe item was: " + document.getElementById("name").innerHTML + "\nYou did it in " + guesses + " guesses.");
+        //alert("You won!\nThe item was: " + document.getElementById("name").innerHTML + "\nYou did it in " + guesses + " guesses.");
+        document.getElementById("wintitle").innerHTML = "You won!";
+        document.getElementById("wintext").innerHTML = "The item was " + document.getElementById("name").innerHTML + "\nYou did it in " + guesses + " guesses.";
+        document.getElementById("main").classList.add('flex');
+
+        while (hints.firstChild) {
+          hints.removeChild(hints.lastChild);
+        }
+document.getElementById("printGuesses").innerHTML = "";
+guesses = 0;
+setup();
     }
 }
 
@@ -52,8 +63,8 @@ function myFunction() {
   }
 }
 const createList = (items) => {
+  if (document.getElementById("myUL").innerHTML.trim() == "") {
   let list = document.getElementById("myUL");
-  let searchnum = 0;
   for (const [key, value] of Object.entries(items)) {
     let li = document.createElement("li");
     let a = document.createElement("a");
@@ -66,6 +77,7 @@ const createList = (items) => {
     list.appendChild(li);
     li.appendChild(a);
   }
+}
 };
 
 
@@ -86,6 +98,9 @@ const setup = async () => {
   //  return purchasableitems;
   
   createList(purchasableitems)
+  document.getElementById("myInput").addEventListener('enter', (e) => {
+doFunction();
+  });
   
   
   
