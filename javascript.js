@@ -1,15 +1,21 @@
 function searchItem(name) {
   document.getElementById("myInput").value = name;
+  myFunction();
 }
 
 function doFunction() {
   document.getElementById("main").classList.remove('flex');
     guess = document.getElementsByTagName("input")[0].value;
     searchItem("");
-    let guesses = document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))
+let guesses = 0;
+if (document.getElementById("printGuesses").innerHTML.length > 24) {
+ guesses = (parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+6)))) + 10*(parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))))
+} else {
+  guesses = document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))
+}
        if (document.getElementById("printGuesses").innerHTML == "") {
-      document.getElementById("printGuesses").innerHTML = "You have made " + 1 + " guess.";
-      guesses = 1;
+         guesses = 1;
+      document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guess.";
     } else {
       guesses++;
     document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guesses.";
@@ -58,8 +64,10 @@ function myFunction() {
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";
+      li[i].classList.add("active");
     } else {
       li[i].style.display = "none";
+      li[i].classList.remove("active");
     }
   }
 }
@@ -75,6 +83,9 @@ const createList = (items) => {
       "onclick",
       'searchItem("' + value.name + '");'
     );
+    a.style.background = "url('https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/" + value.image.full + "')no-repeat right top"
+    a.style.backgroundSize = "50px";
+    li.classList.add("active");
     list.appendChild(li);
     li.appendChild(a);
   }
@@ -99,11 +110,21 @@ const setup = async () => {
   //  return purchasableitems;
   
   createList(purchasableitems)
+if (document.getElementById("myInput").classList.contains("active")) {
+} else {
+  document.getElementById("myInput").classList.add("active");
   document.getElementById("myInput").addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-doFunction();
+      myFunction();
+      for(let i = 0; i<document.getElementById("myUL").children.length; i++) {
+        if(document.getElementById("myInput").value != purchasableitems[i].name) {
+          searchItem(document.getElementById("myUL").querySelector(".active").innerText)
+        }
+      }
+      doFunction();
     }
   });
+}
   
   
   
