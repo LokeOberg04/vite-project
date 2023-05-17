@@ -5,7 +5,7 @@ export function searchItem(name) {
 
 export function doFunction() {
   document.getElementById("main").classList.remove('flex');
-    guess = document.getElementsByTagName("input")[0].value;
+    let guess = document.getElementsByTagName("input")[0].value;
     searchItem("");
 let guesses = 0;
 if (document.getElementById("printGuesses").innerHTML.length > 24) {
@@ -71,7 +71,7 @@ export function myFunction() {
     }
   }
 }
-const createList = (items) => {
+export const createList = (items) => {
   if (document.getElementById("myUL").innerHTML.trim() == "") {
   let list = document.getElementById("myUL");
   for (const [key, value] of Object.entries(items)) {
@@ -94,7 +94,7 @@ const createList = (items) => {
 
 
 
-const setup = async () => {
+export const setup = async () => {
   const res = await fetch("https://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/item.json");
   const data = await res.json();
   
