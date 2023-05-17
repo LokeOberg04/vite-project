@@ -1,76 +1,10 @@
-function searchItem(name) {
-  document.getElementById("myInput").value = name;
-  myFunction();
-}
+import { doFunction } from './counter.js'
+import { myFunction } from './counter.js'
+import { searchItem } from './counter.js'
+  window.myFunction = myFunction
+  window.doFunction = doFunction
+  window.searchItem = searchItem
 
-function doFunction() {
-  document.getElementById("main").classList.remove('flex');
-    guess = document.getElementsByTagName("input")[0].value;
-    searchItem("");
-let guesses = 0;
-if (document.getElementById("printGuesses").innerHTML.length > 24) {
- guesses = (parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+6)))) + 10*(parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))))
-} else {
-  guesses = document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))
-}
-       if (document.getElementById("printGuesses").innerHTML == "") {
-         guesses = 1;
-      document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guess.";
-    } else {
-      guesses++;
-    document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guesses.";
-    }
-    let hints = document.getElementById("hints");
-    let hint = document.createElement("p");
-hints.append(hint);
-if (guesses == 1) {
-hint.innerText += document.getElementById("cost").innerHTML;
-} else if (guesses == 2) {
-  hint.innerText += document.getElementById("tags").innerHTML;
-} else if (guesses == 3) {
-  hint.innerText += document.getElementById("description").innerHTML;
-} else if (guesses == 4) {
-  hint.innerText += document.getElementById("passive").innerHTML;
-} 
-      
-    console.log("Your guess: " + guess);
-    console.log("guesses = " + guesses)
-    if (guess.toLowerCase() === (document.getElementById("name").innerHTML).toLowerCase()) {
-        //alert("You won!\nThe item was: " + document.getElementById("name").innerHTML + "\nYou did it in " + guesses + " guesses.");
-        document.getElementById("wintitle").innerHTML = "You won!";
-        document.getElementById("wintext").innerHTML = "The item was " + document.getElementById("name").innerHTML + "\nYou did it in " + guesses + " guesses.";
-        document.getElementById("main").classList.add('flex');
-
-        while (hints.firstChild) {
-          hints.removeChild(hints.lastChild);
-        }
-document.getElementById("printGuesses").innerHTML = "";
-guesses = 0;
-setup();
-    }
-}
-
-function myFunction() {
-  // Declare variables
-  let input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName("li");
-
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-      li[i].classList.add("active");
-    } else {
-      li[i].style.display = "none";
-      li[i].classList.remove("active");
-    }
-  }
-}
 const createList = (items) => {
   if (document.getElementById("myUL").innerHTML.trim() == "") {
   let list = document.getElementById("myUL");
