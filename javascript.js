@@ -95,7 +95,7 @@ const createList = (items) => {
 
 
 const setup = async () => {
-  const res = await fetch("http://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/item.json");
+  const res = await fetch("./itemslist.json");
   const data = await res.json();
   
   let purchasableitems = [];
