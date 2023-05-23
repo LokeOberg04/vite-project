@@ -18,6 +18,7 @@
     <p id="description" hidden></p>
     <p id="passive" hidden></p>
     <p id="name" hidden></p>
+        <p id="image" hidden></p>
     <header class="header">
       <h1>Guess The Item!</h1>
     </header>
@@ -31,6 +32,7 @@
       <p id="printGuesses"></p>
       <p id="hints"></p>
       <label for="guess" name="guess">Guess</label>
+      <div id="game">
       <!--<input type="text" name="guess" id="guess"> -->
 
       <input
@@ -39,14 +41,9 @@
         onkeyup="myFunction()"
         placeholder="Search for names.."
       />
-      <input
-        id="clickMe"
-        type="button"
-        value="submit"
-        onclick="doFunction();"
-      />
 
       <ul id="myUL"></ul>
+      </div>
     </main>
   </body>
 

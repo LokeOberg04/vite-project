@@ -22,10 +22,11 @@ if (document.getElementById("printGuesses").innerHTML.length > 24) {
       document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guess.";
     } else {
       guesses++;
-    document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guesses.";
+      document.getElementById("printGuesses").innerHTML = "You have made " + guesses + " guesses.";
     }
     let hints = document.getElementById("hints");
     let hint = document.createElement("p");
+    let img = document.createElement("img");
 hints.append(hint);
 if (guesses == 1) {
 hint.innerText += document.getElementById("cost").innerHTML;
@@ -35,7 +36,17 @@ hint.innerText += document.getElementById("cost").innerHTML;
   hint.innerText += document.getElementById("description").innerHTML;
 } else if (guesses == 4) {
   hint.innerText += document.getElementById("passive").innerHTML;
-} 
+} else if (guesses == 5) {
+  hint.innerText += "The first letter is " + "'" + document.getElementById("name").innerHTML.charAt(0) + "'";
+} else if (guesses == 6) {
+  img.src = 'https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/' + document.getElementById("image").innerHTML;
+  img.style.size = "50px";
+  img.id = "imgHint"
+  img.style.filter = "blur(20Px)";
+  hint.appendChild(img);
+} else if (guesses > 6) {
+  document.getElementById("imgHint").style.filter = "blur(" + (guesses*(-5)+50) + "Px)";
+}
       
     console.log("Your guess: " + guess);
     console.log("guesses = " + guesses)
@@ -88,7 +99,7 @@ export const createList = (items) => {
       'searchItem("' + value.name + '");'
     );
     a.style.background = "url('https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/" + value.image.full + "')no-repeat right top"
-    a.style.backgroundSize = "50px";
+    a.style.backgroundSize = "52px";
     li.classList.add("active");
     list.appendChild(li);
     li.appendChild(a);
@@ -147,4 +158,6 @@ if (document.getElementById("myInput").classList.contains("active")) {
   document.getElementById("passive").innerHTML = "passive: " + passive;
   document.getElementById("description").innerHTML = "description: " + answer.plaintext;
   document.getElementById("cost").innerHTML = "cost: " + answer.gold.total;
+  document.getElementById("image").innerHTML = answer.image.full;
+  
 };
