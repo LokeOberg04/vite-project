@@ -3,6 +3,10 @@ export function searchItem(name) {
   myFunction();
 }
 
+export function revealItem() {
+  return document.getElementById("name").innerHTML;
+}
+
 export function doFunction() {
   document.getElementById("main").classList.remove('flex');
     let guess = document.getElementsByTagName("input")[0].value;
@@ -143,6 +147,4 @@ if (document.getElementById("myInput").classList.contains("active")) {
   document.getElementById("passive").innerHTML = "passive: " + passive;
   document.getElementById("description").innerHTML = "description: " + answer.plaintext;
   document.getElementById("cost").innerHTML = "cost: " + answer.gold.total;
-
-  console.log(answer);
 };
