@@ -1,6 +1,7 @@
 export function searchItem(name) {
+  window. scrollTo(0, 0);
   document.getElementById("myInput").value = name;
-  myFunction();
+  doFunction();
 }
 
 export function revealItem() {
@@ -10,7 +11,8 @@ export function revealItem() {
 export function doFunction() {
   document.getElementById("main").classList.remove('flex');
     let guess = document.getElementsByTagName("input")[0].value;
-    searchItem("");
+    document.getElementById("myInput").value = "";
+    myFunction();
 let guesses = 0;
 if (document.getElementById("printGuesses").innerHTML.length > 24) {
  guesses = (parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+6)))) + 10*(parseInt(document.getElementById("printGuesses").innerHTML.charAt((document.getElementById("printGuesses").innerHTML.indexOf("made")+5))))
@@ -133,7 +135,7 @@ if (document.getElementById("myInput").classList.contains("active")) {
       myFunction();
       for(let i = 0; i<document.getElementById("myUL").children.length; i++) {
         if(document.getElementById("myInput").value != purchasableitems[i].name) {
-          searchItem(document.getElementById("myUL").querySelector(".active").innerText)
+          document.getElementById("myInput").value = (document.getElementById("myUL").querySelector(".active").innerText)
         }
       }
       doFunction();
